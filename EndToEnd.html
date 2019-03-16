@@ -13939,7 +13939,390 @@ Name: median_house_value, dtype: float64</pre>
 </div>
 </div>
 
+</div>The Above example shows that a Simple Linear Regression algorithm severely underfits the data
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="k">import</span> <span class="n">DecisionTreeRegressor</span>
+<span class="n">decision_tree_regressor</span> <span class="o">=</span> <span class="n">DecisionTreeRegressor</span><span class="p">()</span>
+<span class="n">decision_tree_regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">housing_prepared</span><span class="p">,</span> <span class="n">housing_labels</span><span class="p">)</span>
+
+<span class="n">some_predictions</span> <span class="o">=</span> <span class="n">decision_tree_regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">some_data_prepared</span><span class="p">)</span>
+<span class="n">dectree_mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">some_predictions</span><span class="p">,</span> <span class="n">some_labels</span><span class="p">)</span>
+<span class="n">dectree_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">dectree_mse</span><span class="p">)</span>
+<span class="n">dectree_rmse</span>
+</pre></div>
+
+    </div>
 </div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[38]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>The Above example shows that a Decision Tree severely overfits the data
+This will be similar to results with very accurate models.
+To find out the difference, we can not use test set.
+This is because we want to find accuracy of final model using test set.
+
+This brings us cross validation.
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="k">import</span> <span class="n">cross_val_score</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span>
+    <span class="n">decision_tree_regressor</span><span class="p">,</span> 
+    <span class="n">housing_prepared</span><span class="p">,</span> <span class="n">housing_labels</span><span class="p">,</span> 
+    <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;neg_mean_squared_error&quot;</span><span class="p">,</span> 
+    <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="n">tree_rmse_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>K fold Cross validation 
+    creates 'cv' number of folds(partitions)
+    assume cv = 10
+    trains the regressor on 9 folds and tests on the last one.
+    repeats this process 10 times picking a different test fold every time
+    
+scoring is a maximisation(utility) function given to this function.
+Maximising the negative of mean square error is equivalent to 
+minimising the positive mean square error.
+
+This comes from optimisation theory.
+
+This is the reason the next line computes sqrt( - scores)
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree_rmse_scores</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[41]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([69838.97743934, 66737.0524795 , 70881.25161879, 69006.32457635,
+       70315.1664059 , 73697.00014058, 71534.53897373, 70691.68187052,
+       75889.2482131 , 69327.26635146])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">describe</span><span class="p">(</span><span class="n">scores</span><span class="p">):</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">stddev</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Scores : &quot;</span><span class="p">,</span> <span class="n">scores</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean : &quot;</span><span class="p">,</span> <span class="n">mean</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard Deviation : &quot;</span><span class="p">,</span> <span class="n">stddev</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">tree_rmse_scores</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Scores :  [69838.97743934 66737.0524795  70881.25161879 69006.32457635
+ 70315.1664059  73697.00014058 71534.53897373 70691.68187052
+ 75889.2482131  69327.26635146]
+Mean :  70791.85080692905
+Standard Deviation :  2406.29719065435
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span>
+    <span class="n">linear_regressor</span><span class="p">,</span>
+    <span class="n">housing_prepared</span><span class="p">,</span> <span class="n">housing_labels</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">,</span>
+    <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="p">)</span>
+
+<span class="n">lin_reg_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">scores</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">describe</span><span class="p">(</span><span class="n">lin_reg_scores</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Scores :  [66991.93073767 67048.67920753 70444.05575277 74774.02214506
+ 68102.64264297 71319.00741855 65085.09678642 68353.36278416
+ 71773.08100879 67789.05274345]
+Mean :  69168.09312273604
+Standard Deviation :  2721.508677198044
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>This means that the Decision Tree with a 100% accuracy on the training set performs worse than Linear Regression when tried in a more realistic setting
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestRegressor</span>
+<span class="n">forest_regressor</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">()</span>
+
+<span class="n">forest_regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">housing_prepared</span><span class="p">,</span> <span class="n">housing_labels</span><span class="p">)</span>
+<span class="n">some_predictions</span> <span class="o">=</span> <span class="n">forest_regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">some_data_prepared</span><span class="p">)</span>
+<span class="n">some_predictions</span><span class="p">,</span> <span class="n">some_labels</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\ProgramData\Anaconda3\lib\site-packages\sklearn\ensemble\forest.py:246: FutureWarning: The default value of n_estimators will change from 10 in version 0.20 to 100 in 0.22.
+  &#34;10 in version 0.20 to 100 in 0.22.&#34;, FutureWarning)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[52]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(array([262670., 333510., 214540.,  51670., 241840.]), 17606    286600.0
+ 18632    340600.0
+ 14650    196900.0
+ 3230      46300.0
+ 3555     254500.0
+ Name: median_house_value, dtype: float64)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span>
+    <span class="n">forest_regressor</span><span class="p">,</span>
+    <span class="n">housing_prepared</span><span class="p">,</span> <span class="n">housing_labels</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;neg_mean_squared_error&#39;</span><span class="p">,</span>
+    <span class="n">cv</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="p">)</span>
+
+<span class="n">forest_scores</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="n">scores</span><span class="p">)</span>
+<span class="n">describe</span><span class="p">(</span><span class="n">forest_scores</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Scores :  [51978.55032937 50315.63939044 53124.99176818 54198.83096729
+ 53175.7890925  56045.70787554 51102.54434828 51074.10203151
+ 55125.51800149 53144.95692629]
+Mean :  52928.66307308851
+Standard Deviation :  1755.1803001195356
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>This has less error than both,
+Lets check rmse on training set
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">housing_predicted</span> <span class="o">=</span> <span class="n">forest_regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">housing_prepared</span><span class="p">)</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">housing_predicted</span><span class="p">,</span> <span class="n">housing_labels</span><span class="p">)</span>
+<span class="n">rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+<span class="n">rmse</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[54]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>22193.535900974093</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>This means that the model is still overfitting.
+Because, the error for training set is less than half on what is achieved in validation sets.
+The model has overfit on training set
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Saving model.</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.externals</span> <span class="k">import</span> <span class="n">joblib</span>
+
+<span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">forest_regressor</span><span class="p">,</span> <span class="s1">&#39;forest_regressor_housing.pkl&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[55]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;forest_regressor_housing.pkl&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>Will edit this notebook extensively tomorrow
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
