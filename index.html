@@ -138,8 +138,90 @@
             </li>
         </ol>
     </p>
+    
+    <img src="./images/dataset_statistics.png" 
+        alt="Responsive Image" class="img-fluid">
+    <hr>
+    <div class="container">
+        <form id="form-prediction-input" 
+        action="http://localhost:5000/form-example">
+            
+            <label>
+                Query By
+                <input type="email" required="required">
+            </label>
+            <br>
+
+            <label>
+                Longitude (-114.3 to -124.3)
+                <input type="text" required="required"
+                    name="longitude">
+            </label>
+            <br>
+            
+            <label>
+                Latitude (32.5 to 41.9)
+                <input type="text" required="required"
+                    name="latitude">
+            </label>
+            <br>
+
+            <label>
+                Housing Median Age
+                <input type="text" required="required" 
+                    name="housing_median_age">
+            </label>
+            <br>
+
+            <label>
+                Total Rooms
+                <input type="number" required="required"
+                    name="total_rooms">
+            </label>
+            <br>
+            
+            <label>
+                Total Bedrooms
+                <input type="number" required="required"
+                        name="total_bedrooms">
+                </label>
+                <br>
+            
+            <label>
+                Population
+                <input type="number" required="required"
+                    name="population">
+            </label>
+            <br>
+            
+            <label>
+                Households
+                <input type="number" required="required"
+                    name="households">
+            </label>
+            <br>
+            
+            <label>
+                Median Income
+                <input type="text" required="required"
+                    name="median_income">
+            </label>
+            <br>
+            
+            <label>
+                Ocean Proximity
+                <input type="text" required="required"
+                    name="ocean_proximity">
+            </label>
+            <br>
+
+            <br>
+            <input type="submit" value="Get Prediction">
+        </form>
+    </div>
+    <hr>
     <p>
-        <a href="/EndToEnd.html">
+        <a href="./EndToEnd.html">
             <button> End to End Machine Learning Project </button>
         </a>
     </p>
