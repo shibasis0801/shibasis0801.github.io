@@ -10,9 +10,15 @@ buttonAddItem.addEventListener('click', event => {
     const id = counter;
     const onSubmit = (event) => {
         const editText = document.getElementById(`edit-text-${id}`);
-        // alert(`Submit clicked with value = ${editText.value}`);
-        todoList.removeChild(document.getElementById(`list-item-${id}`));
-        todoList.appendChild(createListItem(editText.value));
+        const value = editText.value;
+
+        if (value === "") {
+            alert("Enter something");
+        }
+        else {
+            todoList.removeChild(document.getElementById(`list-item-${id}`));
+            todoList.appendChild(createListItem(editText.value));
+        }
     }
 
     const onCancel = () => {
@@ -45,6 +51,7 @@ function createInputElement(id, onSubmit, onCancel) {
 
     const editText = document.createElement('input');
     editText.id = `edit-text-${id}`
+    editText.required = true;
     editText.type = "text";
     editText.className = "form-control"
     editText.placeholder = "Enter Todo Item";
