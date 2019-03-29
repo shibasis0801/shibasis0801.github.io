@@ -1,239 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PortFolio</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PortFolio</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-    <p>
-        Nothing there, testing deployment.
-    </p>  
-    <p>
-        Thinking of having multiple sections here, 
-        where I will showcase my Projects 
-        with GitHub/direct links. 
-        <h2>Blog</h2>
-        <ol>
-            <li>
-                WSL and Splashtop
-            </li>
-        </ol>
-        <h2>Projects</h2>
-        <ol>
-            <li>
-                Algorithms in C++
-            </li>
-            <li>
-                Android
-            </li>
-            <li>
-                Front End Web
-            </li>
-            <li>
-                Back End Web
-            </li>
-            <li>
-                Game Development with Unity
-            </li>
-            <li>
-                Game Development with SFML
-            </li>
-            <li>
-                Linux Programming from TLPI
-            </li>
-            <li>
-                Machine Learning from Hands On
-            </li>
-            <li>
-                Deep Learning
-            </li>
-            <li>
-                Functional and Theoretical
-                <ol>
-                    <li>
-                        Erlang
-                    </li>
-                    <li>
-                        Lisp(Racket) from SICP 
-                    </li>
-                </ol>
-            </li>
-            <li>
-                DevOps
-                <ol>
-                    <li>
-                        Docker
-                    </li>
-                    <li>
-                        Jenkins/Travis
-                    </li>
-                    <li>
-                        Bash Scripts
-                    </li>
-                    <li>
-                        Powershell Scripts
-                    </li>
-                </ol>
-            </li>
-            <li>
-                Fun Stuff
-                <ol>
-                    <li>
-                        AI with Unity
-                    </li>
-                    <li>
-                        Graph Theory Algorithms with Unity
-                    </li>
-                    <li>
-                        Neural Networks with Erlang
-                    </li>
-                </ol>
-            </li>
-        </ol>
-        <h2>Notes I write</h2>
-        <ol>
-            <li>
-                Computer Networks
-            </li>
-            <li>
-                Other CS subjects
-            </li>
-            <li>
-                Maths
-            </li>
-            <li>
-                Physics
-            </li>
-            <li>
-                Biology
-            </li>
-        </ol>
-        <h2>Resume</h2>
-        <ol>
-            <li>
-                Latest in PDF form 
-                <p>
-                    (Generate PDF from a normal text file fed into a python script which uses a tex template.)
-                </p>
-            </li>
-            <li>
-                Graph showing skill areas
-                <ol>
-                    <li>
-                        Languages
-                    </li>
-                    <li>
-                        FrameWorks
-                    </li>
-                    <li>
-                        Knowledge Areas
-                    </li>
-                    <li>
-                        etc
-                    </li>
-                </ol>
-            </li>
-        </ol>
-    </p>
-    
-    <img src="./images/dataset_statistics.png" 
-        alt="Responsive Image" class="img-fluid">
-    <hr>
-    <div class="container">
-        <form id="form-prediction-input" 
-        action="http://localhost:5000/form-example">
-            
-            <label>
-                Query By
-                <input type="email" required="required">
-            </label>
-            <br>
 
-            <label>
-                Longitude (-114.3 to -124.3)
-                <input type="text" required="required"
-                    name="longitude">
-            </label>
-            <br>
-            
-            <label>
-                Latitude (32.5 to 41.9)
-                <input type="text" required="required"
-                    name="latitude">
-            </label>
-            <br>
+<body class="container">
+  <header>
+    <h1>
+      This is my PortFolio (CAUTION: 1 Man working)
+    </h1>
+  </header>
 
-            <label>
-                Housing Median Age
-                <input type="text" required="required" 
-                    name="housing_median_age">
-            </label>
-            <br>
-
-            <label>
-                Total Rooms
-                <input type="number" required="required"
-                    name="total_rooms">
-            </label>
-            <br>
-            
-            <label>
-                Total Bedrooms
-                <input type="number" required="required"
-                        name="total_bedrooms">
-                </label>
-                <br>
-            
-            <label>
-                Population
-                <input type="number" required="required"
-                    name="population">
-            </label>
-            <br>
-            
-            <label>
-                Households
-                <input type="number" required="required"
-                    name="households">
-            </label>
-            <br>
-            
-            <label>
-                Median Income
-                <input type="text" required="required"
-                    name="median_income">
-            </label>
-            <br>
-            
-            <label>
-                Ocean Proximity
-                <input type="text" required="required"
-                    name="ocean_proximity">
-            </label>
-            <br>
-
-            <br>
-            <input type="submit" value="Get Prediction">
-        </form>
+  <div class="card" style="width: 18rem;">
+    <img src="images/dataset_statistics.png" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Housing Prediction with Forest Regressor</h5>
+      <p class="card-text">
+        This predicts house prices for a district in the Bay Area using Linear Regression, Decision Tree and Random
+        Forest Regressor
+      </p>
+      <a href="notebooks/EndToEnd.html" class="btn btn-primary">Open Notebook HTML</a>
     </div>
-    <hr>
-    <p>
-        <a href="./EndToEnd.html">
-            <button> End to End Machine Learning Project </button>
-        </a>
-    </p>
-    <p>
-        <button id="button_firebase">
-            Test Firebase
-        </button>
-    </p>
+  </div>
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Bootstrap Tutorial</h5>
+            <p class="card-text">
+              Adding components from the components page.
+            </p>
+            <a href="bootstrapTutorial.html" class="btn btn-primary">
+              Open Tutorial
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">To Do List</h5>
+            <p class="card-text">
+              Learning how to build dynamic websites and will add this to firebase also.
+            </p>
+            <a href="todolist.html" class="btn btn-primary" target="blank">ToDo List</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <p>
+    <button id="button_firebase" class="btn btn-primary">
+      Test Firebase
+    </button>
+  </p>
+
+  <hr>
+  <p>
+    Nothing there, testing deployment.
+  </p>
+  <p>
+    Thinking of having multiple sections here,
+    where I will showcase my Projects
+    with GitHub/direct links.
+    <h2>Blog</h2>
+    <ol>
+      <li>
+        WSL and Splashtop
+      </li>
+    </ol>
+    <h2>Projects</h2>
+    <ol>
+      <li>
+        Algorithms in C++
+      </li>
+      <li>
+        Android
+      </li>
+      <li>
+        Front End Web
+      </li>
+      <li>
+        Back End Web
+      </li>
+      <li>
+        Game Development with Unity
+      </li>
+      <li>
+        Game Development with SFML
+      </li>
+      <li>
+        Linux Programming from TLPI
+      </li>
+      <li>
+        Machine Learning from Hands On
+      </li>
+      <li>
+        Deep Learning
+      </li>
+      <li>
+        Functional and Theoretical
+        <ol>
+          <li>
+            Erlang
+          </li>
+          <li>
+            Lisp(Racket) from SICP
+          </li>
+        </ol>
+      </li>
+      <li>
+        DevOps
+        <ol>
+          <li>
+            Docker
+          </li>
+          <li>
+            Jenkins/Travis
+          </li>
+          <li>
+            Bash Scripts
+          </li>
+          <li>
+            Powershell Scripts
+          </li>
+        </ol>
+      </li>
+      <li>
+        Fun Stuff
+        <ol>
+          <li>
+            AI with Unity
+          </li>
+          <li>
+            Graph Theory Algorithms with Unity
+          </li>
+          <li>
+            Neural Networks with Erlang
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <h2>Notes I write</h2>
+    <ol>
+      <li>
+        Computer Networks
+      </li>
+      <li>
+        Other CS subjects
+      </li>
+      <li>
+        Maths
+      </li>
+      <li>
+        Physics
+      </li>
+      <li>
+        Biology
+      </li>
+    </ol>
+    <h2>Resume</h2>
+    <ol>
+      <li>
+        Latest in PDF form
+        <p>
+          (Generate PDF from a normal text file fed into a python script which uses a tex template.)
+        </p>
+      </li>
+      <li>
+        Graph showing skill areas
+        <ol>
+          <li>
+            Languages
+          </li>
+          <li>
+            FrameWorks
+          </li>
+          <li>
+            Knowledge Areas
+          </li>
+          <li>
+            etc
+          </li>
+        </ol>
+      </li>
+    </ol>
+  </p>
+
+  <img src="./images/dataset_statistics.png" alt="Responsive Image" class="img-fluid">
+  <hr>
+  <section>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form id="form-prediction-input" action="http://localhost:5000/form-example">
+          <div class="form-group">
+            <label for="input-email">
+              Query By
+            </label>
+            <input id="input-email" type="email" class="form-control" required="required">
+          </div>
+
+          <div class="form-group">
+            <label for="input-longitude">
+              Longitude (-114.3 to -124.3)
+            </label>
+            <input id="input-longitude" class="form-control" type="text" required="required" name="longitude">
+          </div>
+
+          <div class="form-group">
+            <label for="input-latitude">
+              Latitude (32.5 to 41.9)
+            </label>
+            <input type="text" id="input-latitude" class="form-control" required="required" name="latitude">
+          </div>
+
+          <div class="form-group">
+            <label for="input-median-age">
+              Housing Median Age
+            </label>
+            <input class="form-control" id="input-median-age" type="text" required="required" name="housing_median_age">
+          </div>
+
+          <div class="form-group">
+
+            <label id="input-total-rooms">
+              Total Rooms
+            </label>
+            <input class="form-control" id="input-total-rooms" type="number" required="required" name="total_rooms">
+          </div>
+
+          <div class="form-group">
+
+            <label id="input-total-bedrooms">
+              Total Bedrooms
+            </label>
+            <input class="form-control" id="input-total-bedrooms" type="number" required="required"
+              name="total_bedrooms">
+          </div>
+
+          <div class="form-group">
+
+            <label id="input-population">
+              Population
+            </label>
+            <input class="form-control" id="input-population" type="number" required="required" name="population">
+          </div>
+
+          <div class="form-group">
+
+            <label id="input-households">
+              Households
+            </label>
+            <input class="form-control" id="input-households" type="number" required="required" name="households">
+          </div>
+
+          <div class="form-group">
+
+            <label id="input-median-income">
+              Median Income
+            </label>
+            <input class="form-control" id="input-median-income" type="text" required="required" name="median_income">
+          </div>
+
+          <div class="form-group">
+
+            <label id="input-ocean-proximity">
+              Ocean Proximity
+            </label>
+            <input class="form-control" id="input-ocean-proximity" type="text" required="required"
+              name="ocean_proximity">
+          </div>
+
+          <input type="submit" value="Get Prediction">
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <hr>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
 <script src="/code.js"></script>
+
 </html>

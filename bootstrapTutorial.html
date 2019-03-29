@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+</head>
+
+<body class="container">
+    <h1>Hello, world!</h1>
+
+    <div class="alert alert-primary" role="alert">This is an Alert</div>
+    <div class="alert alert-secondary" role="alert">This is an Alert</div>
+    <div class="alert alert-success" role="alert">This is an Alert</div>
+    <div class="alert alert-danger" role="alert">This is an Alert</div>
+    <div class="alert alert-warning" role="alert">This is an Alert</div>
+    <div class="alert alert-info" role="alert">This is an Alert</div>
+    <div class="alert alert-light" role="alert">This is an Alert</div>
+    <div class="alert alert-dark" role="alert">This is an Alert</div>
+
+    <div class="alert alert-success">
+        <a href="https://www.google.com/search?q='Bootstrap'" target="blank" class="alert-link">Google</a> for Bootstrap
+    </div>
+
+    <div class="alert alert-info">
+        <h4 class="alert-header">Header inside alert</h4>   
+        <hr>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, itaque!
+        </p>            
+    </div>
+
+    <div class="alert alert-primary alert-dismissable fade show" id="alert-close">
+        <a href="https://www.google.com/search?q='Bootstrap'" class="alert-link">Google</a> for Bootstrap (You can dismiss this alert)
+        <button type="button" data-dismiss="alert" class="close">
+            <span>&times;</span>
+        </button>
+        <script>
+            $('#alert-close').on('closed.bs.alert', () => {
+                alert("Alert closed");
+            })
+        </script>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item active">Cras justo odio</li>
+        <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Morbi leo risus</li>
+        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">Vestibulum at eros</li>
+    </ul>
+
+    <hr>
+    <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action active">
+              Cras justo odio
+            </a>
+            <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+            
+          </div>
+
+          <hr>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
