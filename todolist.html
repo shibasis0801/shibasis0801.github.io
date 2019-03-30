@@ -30,14 +30,28 @@
         <li class="list-group-item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci, modi!</li>
         <li class="list-group-item">Dolorum sed ipsam velit unde cupiditate qui vitae laboriosam quisquam.</li>
         <li class="list-group-item">Iure quaerat nulla illum eos facere sint quo. Voluptas, labore?</li>
+        <li class="list-group-item">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+            </div>
+          </div>
+        </li>
+          
       </ul>
       <br>
       <div class="float-right">
         <button id="button-add-item" class="btn btn-primary">Add</button>
       </div>
+      <p>
+        <button class="btn btn-secondary" id="button-test-api">
+          Test Promises
+        </button>
+      </p>
     </div>
-  </section>
 
+  </section>
   <br>
 
   <script src="http://code.jquery.com/jquery-3.3.1.min.js"
@@ -49,7 +63,8 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
 
-  <script src="scripts/todoapp.js"></script>
+  <script src="scripts/todoapp.js" type="module"></script>
+  <script src="scripts/view.mjs" type="module"></script>
 </body>
 
 </html>
